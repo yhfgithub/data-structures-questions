@@ -6464,6 +6464,7 @@ Golang的微服务框架[kit](https://gokit.io/)中有详细的微服务的例�
 * 基于Redis的实现方式
 
 利用Redis的 SetNX来实现分布式锁,性能高, edis可持久化，也能保证数据不易丢失,redis集群方式提高稳定性。
+实现原理文章：http://www.redis.cn/articles/20181020004.html
 
 * 基于Etcd实现分布式锁
 
