@@ -84,6 +84,9 @@ Golang面试问题汇总, 这里主要分为 Golang, Mysql, Redis, Network Proto
 |           22                |     [Mysql的数据如何恢复到任意时间点](#Mysql的数据如何恢复到任意时间点)                                              |   
 |           23                |     [Mysql为什么加了索引可以加快查询](#Mysql为什么加了索引可以加快查询)                                              |   
 |           24                |     [Explain命令有什么用](#Explain命令有什么用)                                                                 |   
+|           25                |     [MyISAM和InnoDB区别和应用场景](#MyISAM和InnoDB区别和应用场景)                                                                 |   
+
+
 
 ### Redis基础
 |           题号               |            题目                                                                                        |
@@ -4702,6 +4705,10 @@ rows表示Mysql根据表统计信息及索引选用情况，估算的找到所�
 5. Impossible where：这个值强调了where语句会导致没有符合条件的行。
 
 6. Select tables optimized away：这个值意味着仅通过使用索引，优化器可能仅从聚合函数结果中返回一行.
+
+25. #### MyISAM和InnoDB区别和应用场景
+网址：https://www.jianshu.com/p/dc60346d55a2
+
 
 
 ### Redis基础知识
