@@ -4706,6 +4706,7 @@ rows表示Mysql根据表统计信息及索引选用情况，估算的找到所�
 
 6. Select tables optimized away：这个值意味着仅通过使用索引，优化器可能仅从聚合函数结果中返回一行.
 
+
 25. #### MyISAM和InnoDB区别和应用场景
 网址：https://www.jianshu.com/p/dc60346d55a2
 
