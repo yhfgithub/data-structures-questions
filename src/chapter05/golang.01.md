@@ -4833,7 +4833,15 @@ Redis 启用一个定时器定时监视所有的 key，判断key是否过期，�
 
 redis所有的操作都是原子性的，采用单线程处理所有业务，命令是一个一个执行的，因此无需考虑并发
 带来的数据影响。
-由于单线程所以Redis本身并没有锁的概念，多个客户端连接并不存在竞争关系，但是利用jedis等客户端对Redis进行并发访问时会出现问题。
+由于单线程所以Redis本身并没有锁的概念，多个客户端连接并不存在竞争关系，但是利用jedis等客户端对Redis进行并发访问时会出现问题。是因为1).共享socket引起的异常， jedis在执行每一个命令之前都会先执行connect方法，socket是一个共享变量，在多线程的情况下可能存在：线程1执行到了,线程2执行到了,因为线程2重新初始化了socket但是还没有执行connect，所以线程1执行socket.getOutputStream()或者socket.getInputStream()就会抛出java.net.SocketException: Socket is not connected。java.net.SocketException: Socket closed是因为socket异常导致共享变量socket关闭了引起的。2 共享数据流引起的异常,上面是因为多个线程共享jedis引起的socket异常。除了socket连接引起的异常之外，还有共享数据流引起的异常。下面就看一下，因为共享jedis实例引起的共享数据流错误问题。 Protocol error: invalid multibulk lengt是因为多线程通过RedisInputStream和RedisOutputStream读写缓冲区的时候引起的问题造成的数据问题不满足RESP协议引起的。举个简单的例子，例如多个线程执行命令,线程1执行 set hello world命令。本来应该发送：
+*3\r\n$3\r\nSET\r\n$5\r\nhello\r\n$5\r\nworld\r\n
+但是线程执行写到
+*3\r\n$3\r\nSET\r\n$5\r\nhello\r\n
+然后被挂起了，线程2执行了写操作写入了' '，然后线程1继续执行，最后发送到redis服务器端的数据可能就是：
+*3\r\n$3\r\nSET\r\n$5\r\nhello\r\n' '$5\r\nworld\r\n
+Jedis 是 Redis 官方推荐的 Java 连接开发工具，jedis非线程安全。
+但是可以通过JedisPool连接池去管理实例，在多线程情况下让每个线程有自己独立的jedis实例，可变为线程安全。
+
 解决：
 * 可以利用分布式锁和时间戳来解决.
 
