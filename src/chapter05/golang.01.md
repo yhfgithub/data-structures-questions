@@ -6671,8 +6671,17 @@ f. 撤消进程
 
 7. #### Etcd的Raft一致性算法原理
 
+一致性：读操作总是能读取到之前完成的写操作结果，满足这个条件的系统称为强一致系统，这里的“之前”一般对同一个客户端而言；
+可用性：读写操作在单台机器发生故障的情况下仍然能够正常执行，而不需要等待发生故障的机器重启或者其上的服务迁移到其他机器；
+分区可容忍性：机器故障、网络故障、机房停电等异常情况下仍然能够满足一致性或可用性。
+CAP is often misunderstood as a choice at all times of which one of the three guarantees to abandon . In fact , the choice is between consistency and availability only when a network partition orfailure happens . When there is no network failure , both availability and consistency can be satisfied 。
+CAP 常常被误解为在任何时候都可以选择放弃三个中的哪一个。 事实上，只有在发生网络分区或故障时，才能在一致性和可用性之间进行选择。 在没有网络故障的情况下，可用性和一致性都可以得到满足。
+2PC和3PC可看： https://cloud.tencent.com/developer/article/1763152
+
 Etcd中的Raft一致性算法原理：
 
+图像演示：http://thesecretlivesofdata.com/raft/
+模拟演示：https://raft.github.io/
 Raft将系统中的角色分为领导者（Leader）、跟从者（Follower）和候选人（Candidate）.
 1. Leader：接受客户端请求，并向Follower同步请求日志，当日志同步到大多数节点上后告诉Follower提交日志。
 2. Follower：接受并持久化Leader同步的日志，在Leader告之日志可以提交之后，提交日志。
