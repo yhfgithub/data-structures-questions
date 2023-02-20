@@ -6679,7 +6679,7 @@ f. 撤消进程
 
 CAP is often misunderstood as a choice at all times of which one of the three guarantees to abandon . In fact , the choice is between consistency and availability only when a network partition orfailure happens . When there is no network failure , both availability and consistency can be satisfied 。
 
-CAP 常常被误解为在任何时候都可以选择放弃三个中的哪一个。 事实上，只有在发生网络分区或故障时，才能在一致性和可用性之间进行选择。 在没有网络故障的情况下，可用性和一致性都可以得到满足。
+CAP 常常被误解为在任何时候都可以选择放弃三个中的哪一个。 事实上，只有在发生网络分区或故障时，才能在一致性和可用性之间进行选择。 在没有网络故障的情况下，可用性和一致性都可以得到满足,只是2强1弱的关系，没有完美的都好。
 
 2PC和3PC可看： https://cloud.tencent.com/developer/article/1763152
 
