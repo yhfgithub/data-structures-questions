@@ -6875,6 +6875,8 @@ Kafka把topic中一个parition大文件分成多个小文件段，通过多个�
 
 kafka中Topic、Partition、Groups、Brokers概念辨析（链接）：https://blog.csdn.net/loongkingwhat/article/details/122117871
 
+Kafka消费者组是什么？（作用）：https://cloud.tencent.com/developer/article/1897340
+
 14. #### Kafka如何保证可靠性
 
 在 Kafka 0.8.0 版本之前，Kafka 是没有副本的概念的，那时候人们只会用 Kafka 存储一些不重要的数据，因为没有副本，数据很可能会丢失。但是随着业务的发展，支持副本的功能越来越强烈，所以为了保证数据的可靠性，Kafka 从 0.8.0 版本开始引入了分区副本。也就是说每个分区可以人为的配置几个副本（比如创建主题的时候指定 replication-factor，也可以在 Broker 级别进行配置 default.replication.factor），一般会设置为3。
