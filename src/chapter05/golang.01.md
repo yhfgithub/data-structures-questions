@@ -7031,6 +7031,7 @@ SAGA 必须保证所有子事务都得以提交或者补偿，但 SAGA 系统本
 
 #### 设计模式23种go实现
 文章链接：https://lailin.xyz/post/go-design-pattern.html
+
 githu:https://github.com/mohuishou/go-design-pattern
 
 
