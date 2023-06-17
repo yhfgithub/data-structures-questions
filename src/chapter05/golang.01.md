@@ -7033,6 +7033,7 @@ SAGA 必须保证所有子事务都得以提交或者补偿，但 SAGA 系统本
 文章链接：https://lailin.xyz/post/go-design-pattern.html
 
 githu:https://github.com/mohuishou/go-design-pattern
+
 单例模式只饿懒，抽象工厂创对象，
 
 工厂模式有DI，   建造者式兼复杂，
