@@ -7035,6 +7035,12 @@ SAGA 必须保证所有子事务都得以提交或者补偿，但 SAGA 系统本
 githu:https://github.com/mohuishou/go-design-pattern
 
 
+<p align="center">
+<img width="300" align="center" src="../images/imgdesignPrinal.jpg" />
+</p>
+
+
+
 
 #### Golang面试参考
 
